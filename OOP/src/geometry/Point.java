@@ -4,6 +4,20 @@ public class Point {
 	private int x;
 	private int y;
 	private boolean selected;
+	
+	public Point() {
+	
+	}
+
+	public Point(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public Point(int x, int y, boolean selected) {
+		this(x, y);
+		this.selected = selected;
+	}
 
 	public double distance(Point p) {
 		int dX = x - p.x;

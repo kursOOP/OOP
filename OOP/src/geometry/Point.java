@@ -4,9 +4,9 @@ public class Point {
 	private int x;
 	private int y;
 	private boolean selected;
-	
+
 	public Point() {
-	
+
 	}
 
 	public Point(int x, int y) {
@@ -17,6 +17,17 @@ public class Point {
 	public Point(int x, int y, boolean selected) {
 		this(x, y);
 		this.selected = selected;
+	}
+	
+	public boolean contains(Point p) {
+		return p.distance(new Point(x, y)) <= 3;
+	}
+
+	public boolean contains(int x, int y) {
+		if(this.distance(new Point(x, y)) <= 3)
+			return true;
+		else
+			return false;
 	}
 
 	public double distance(Point p) {

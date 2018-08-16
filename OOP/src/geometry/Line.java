@@ -2,54 +2,57 @@ package geometry;
 
 public class Line {
 
-	private int startX;
-	private int startY;
-	private int endX;
-	private int endY;
+	private Point startPoint;
+	private Point endPoint;
 	private boolean selected;
-	
+
+	public Line(Point startPoint, Point endPoint) {
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+	}
+	public Line(Point startPoint, Point endPoint, boolean selected) {
+		this(startPoint, endPoint);
+		this.selected = selected;
+	}
+
+	public boolean contains(Point p){
+		return ((startPoint.distance(p) + endPoint.distance(p))-length()) <= 3;
+	}
+
+	public boolean contains(int x, int y){
+		Point temp = new Point(x, y);
+		if((startPoint.distance(temp) + endPoint.distance(temp))-length() <= 3)
+			return true;
+		else
+			return false;
+	}
+
 	public double length() {
-		int dX = this.startX-this.endX;
-		int dY = this.startY-this.endY;
+		int dX = this.startPoint.getX()-this.endPoint.getX();
+		int dY = this.startPoint.getY()-this.endPoint.getY();
 		return Math.sqrt(dX*dX+dY*dY);		
 	}
-	
-	public int getStartX() {
-		return startX;
+
+	public Point getStartPoint() {
+		return startPoint;
 	}
-	
-	public void setStartX(int startX) {
-		this.startX = startX;
+
+	public void setStartPoint(Point startPoint) {
+		this.startPoint = startPoint;
 	}
-	
-	public int getStartY() {
-		return startY;
+
+	public Point getEndPoint() {
+		return endPoint;
 	}
-	
-	public void setStartY(int startY) {
-		this.startY = startY;
+
+	public void setEndPoint(Point endPoint) {
+		this.endPoint = endPoint;
 	}
-	
-	public int getEndX() {
-		return endX;
-	}
-	
-	public void setEndX(int endX) {
-		this.endX = endX;
-	}
-	
-	public int getEndY() {
-		return endY;
-	}
-	
-	public void setEndY(int endY) {
-		this.endY = endY;
-	}
-	
+
 	public boolean isSelected() {
 		return selected;
 	}
-	
+
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}

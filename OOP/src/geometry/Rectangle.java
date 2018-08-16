@@ -2,55 +2,73 @@ package geometry;
 
 public class Rectangle {
 
-	private int upperLeftX;
-	private int upperLeftY;
+	private Point upperLeftPoint;
 	private int width;
 	private int height;
 	private boolean selected;
-	
-	public int[] rightLowerCorner() {
-		int[] rightLowerXY = new int[2];		
-		rightLowerXY[0] = this.upperLeftX + this.width;
-		rightLowerXY[1] = this.upperLeftY + this.height;		
-		return rightLowerXY;
+
+	public Rectangle(Point upperLeftPoint, int width, int height) {
+		this.upperLeftPoint = upperLeftPoint;
+		this.width = width;
+		this.height = height;
 	}
-	
-	public int getUpperLeftX() {
-		return upperLeftX;
+
+	public Rectangle(Point upperLeftPoint, int width, int height, boolean selected) {
+		this(upperLeftPoint, width, height);
+		this.selected = selected;
 	}
-	
-	public void setUpperLeftX(int upperLeftX) {
-		this.upperLeftX = upperLeftX;
+
+	public Point rightLowerCorner() {
+		int xRightLowerCorner = this.upperLeftPoint.getX() + this.width;
+		int yRightLowerCorner  = this.upperLeftPoint.getY() + this.height;		
+		return new Point(xRightLowerCorner, yRightLowerCorner);
 	}
-	
-	public int getUpperLeftY() {
-		return upperLeftY;
+
+	public boolean contains(Point p) {
+		return(this.upperLeftPoint.getX() <= p.getX() 
+				&& p.getX()<= (this.upperLeftPoint.getX() + width)
+				&& this.upperLeftPoint.getY() <= p.getY() 
+				&& p.getY()  <= (this.upperLeftPoint).getY() + height);
 	}
-	
-	public void setUpperLeftY(int upperLeftY) {
-		this.upperLeftY = upperLeftY;
+
+	public boolean contains(int x, int y) {
+		if(this.upperLeftPoint.getX() <= x 
+				&& x<= (this.upperLeftPoint.getX() + width)
+				&& this.upperLeftPoint.getY() <=y 
+				&& y <= (this.upperLeftPoint).getY() + height)
+			return true;
+		else 
+			return false;
 	}
-	
+
+	public Point getupperLeftPoint() {
+		return upperLeftPoint;
+	}
+
+	public void setupperLeftPoint(Point upperLeftPoint) {
+		this.upperLeftPoint = upperLeftPoint;
+	}
+
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	public boolean isSelected() {
 		return selected;
 	}
-	
+
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}

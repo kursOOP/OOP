@@ -33,6 +33,19 @@ public class Line {
 		return Math.sqrt(dX*dX+dY*dY);		
 	}
 
+	public String toString() {
+		return startPoint + "-->" + endPoint;
+	}
+
+	public boolean equals(Object obj) {
+		if(obj instanceof Line) {
+			Line prosledjena = (Line) obj;
+			return (startPoint.equals(prosledjena.startPoint) && endPoint.equals(prosledjena.endPoint));
+		}
+		else
+			return false;
+	}
+
 	public Point getStartPoint() {
 		return startPoint;
 	}

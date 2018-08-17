@@ -3,7 +3,11 @@ package geometry;
 public class Circle {
 	private Point center;
 	private int radius;
-	private boolean selected;
+	protected boolean selected;
+	
+	public Circle() {
+	
+	}
 
 	public Circle(Point center, int radius) {
 		this.center = center;
@@ -27,6 +31,19 @@ public class Circle {
 
 	public double area() {
 		return Math.PI*this.radius*this.radius;		
+	}
+	
+	public String toString() {
+		return center+", radius: "+radius;
+	}
+	
+	public boolean equals(Object obj) {
+		if(obj instanceof Circle) {
+			Circle temp = (Circle) obj;
+			return (center.equals(temp.center) && radius == temp.radius);
+		}
+		else
+			return false;
 	}
 
 	public Point getCenter() {

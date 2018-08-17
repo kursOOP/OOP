@@ -41,6 +41,21 @@ public class Rectangle {
 			return false;
 	}
 
+
+
+	public String toString() {
+		return upperLeftPoint+", width: "+width+", height: "+height;
+	}
+
+	public boolean equals(Object obj) {
+		if(obj instanceof Rectangle) {
+			Rectangle temp = (Rectangle) obj;
+			return (upperLeftPoint.equals(temp.upperLeftPoint) && width == temp.width && height == temp.height);
+		}
+		else
+			return false;
+	}
+
 	public Point getupperLeftPoint() {
 		return upperLeftPoint;
 	}

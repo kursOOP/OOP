@@ -18,7 +18,7 @@ public class Point {
 		this(x, y);
 		this.selected = selected;
 	}
-	
+
 	public boolean contains(Point p) {
 		return p.distance(new Point(x, y)) <= 3;
 	}
@@ -35,6 +35,22 @@ public class Point {
 		int dY = p.y - y;
 		double d = Math.sqrt(dX*dX + dY*dY);
 		return d;
+	}
+
+	public String toString() {
+		return "(" + x + "," + y + ")";
+	}
+
+	public boolean equals(Object obj) {
+		if(obj instanceof Point) {
+			Point temp = (Point)obj;
+			if (x == temp.x &&	y == temp.y) 
+				return true;
+			else 
+				return false;
+
+		} else 
+			return false;
 	}
 
 	public int getX() {

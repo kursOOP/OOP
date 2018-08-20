@@ -64,7 +64,6 @@ public class Test {
 				", width = "+r1.getWidth()+
 				", height = "+r1.getHeight()+
 				", selected = "+r1.isSelected());
-
 	}
 
 }

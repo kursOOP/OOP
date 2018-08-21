@@ -1,9 +1,11 @@
 package test;
 
 import geometry.Circle;
+import geometry.Donut;
 import geometry.Line;
 import geometry.Point;
 import geometry.Rectangle;
+import geometry.Shape;
 
 public class Test {
 
@@ -64,6 +66,46 @@ public class Test {
 				", width = "+r1.getWidth()+
 				", height = "+r1.getHeight()+
 				", selected = "+r1.isSelected());
+		
+		Point p20 = new Point(5,6);
+		Line l20 = new Line(new Point(1,1), new Point(10, 20));
+		Rectangle r20 = new Rectangle(new Point(0, 0), 50, 100);
+		Circle c20 = new Circle(l2.getEndPoint(), 10);
+		Donut d20 = new Donut(new Point(100, 100), 10, 5);
+
+		Shape[] shapes = {p20, l20, r20, c20, d20};
+		for (int i = 0; i < shapes.length; i++) {
+			if(shapes[i] instanceof Point) {
+				Point temp = (Point) shapes[i];
+				System.out.println(temp);
+				// u ovom slucaju moglo je i ovako:
+				// System.out.println(shapes[i]);
+			}
+			else if(shapes[i] instanceof Line) {
+				Line temp = (Line) shapes[i];
+				System.out.println(temp.length());
+			}
+			else if(shapes[i] instanceof Circle) {
+				Circle temp = (Circle) shapes[i];
+				System.out.println(temp.area());
+			}
+			else if(shapes[i] instanceof Donut) {
+				Donut temp = (Donut) shapes[i];
+				System.out.println(temp.area());
+			}
+			else if(shapes[i] instanceof Rectangle) {
+				Rectangle temp = (Rectangle) shapes[i];
+				System.out.println(temp.area());
+			}
+		}
+		
+		try {
+			c20.setRadius(-10);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Continued");
 	}
 
 }

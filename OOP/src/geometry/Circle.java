@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Circle extends Shape{
@@ -21,7 +22,16 @@ public class Circle extends Shape{
 	}
 
 	public void draw(Graphics g) {
+		g.setColor(Color.black);
 		g.drawOval(center.getX()-radius, center.getY()-radius, 2*radius, 2*radius);
+		g.setColor(Color.blue);
+		if (selected) {
+			g.drawRect(center.getX() - radius - 3, center.getY() - 3, 6, 6);
+			g.drawRect(center.getX() + radius - 3, center.getY() - 3, 6, 6);
+			g.drawRect(center.getX() - 3, center.getY() - radius - 3, 6, 6);
+			g.drawRect(center.getX() - 3, center.getY() + radius - 3, 6, 6);
+			g.drawRect(center.getX() - 3, center.getY() - 3, 6, 6);
+		}
 	}
 
 	public boolean contains(Point p) {

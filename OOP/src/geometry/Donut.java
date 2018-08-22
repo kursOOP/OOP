@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Donut extends Circle {
@@ -20,7 +21,15 @@ public class Donut extends Circle {
 	}
 	public void draw(Graphics g) {
 		super.draw(g);
+		g.setColor(Color.black);
 		g.drawOval(getCenter().getX()-innerRadius, getCenter().getY()-innerRadius, 2*innerRadius, 2*innerRadius);
+		g.setColor(Color.blue);
+		if (selected) {
+			g.drawRect(this.getCenter().getX() - innerRadius - 3, this.getCenter().getY() - 3, 6, 6);
+			g.drawRect(this.getCenter().getX() + innerRadius - 3, this.getCenter().getY() - 3, 6, 6);
+			g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() - innerRadius - 3, 6, 6);
+			g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() + innerRadius - 3, 6, 6);
+		}
 	}
 	public boolean contains(int x, int y) {
 		Point temp = new Point(x, y);

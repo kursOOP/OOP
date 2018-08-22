@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Point extends Shape{
@@ -22,10 +23,14 @@ public class Point extends Shape{
 		// this.selected = selected;
 		// setSelected(selected);
 	}
-	
+
 	public void draw(Graphics g) {
+		g.setColor(Color.black);
 		g.drawLine(x-2, y, x+2, y);
 		g.drawLine(x, y+2, x, y-2);
+		g.setColor(Color.blue);
+		if (selected)
+			g.drawRect(this.x - 3, this.y - 3, 6, 6);
 	}
 
 	public boolean contains(Point p) {

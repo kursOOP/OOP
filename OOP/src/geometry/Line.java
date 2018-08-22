@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Line extends Shape{
@@ -17,7 +18,13 @@ public class Line extends Shape{
 	}
 
 	public void draw(Graphics g) {
+		g.setColor(Color.black);
 		g.drawLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+		g.setColor(Color.blue);
+		if (selected) {
+			g.drawRect(getStartPoint().getX() - 3, getStartPoint().getY() - 3, 6, 6);
+			g.drawRect(getEndPoint().getX() - 3, getEndPoint().getY() - 3, 6, 6);			
+		}
 	}
 
 	public boolean contains(Point p){

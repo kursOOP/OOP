@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import geometry.Donut;
+import geometry.Point;
 import geometry.Rectangle;
 
 import java.awt.GridBagLayout;
@@ -15,6 +17,8 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgRectangle extends JDialog {
 
@@ -42,6 +46,7 @@ public class DlgRectangle extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgRectangle() {
+		setModal(true);
 		setTitle("Dialog rectangle");
 		setBounds(100, 100, 299, 248);
 		getContentPane().setLayout(new BorderLayout());
@@ -135,6 +140,16 @@ public class DlgRectangle extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						int x = Integer.parseInt(txtX.getText());
+						int y = Integer.parseInt(txtY.getText());
+						int width = Integer.parseInt(txtWidth.getText());
+						int height = Integer.parseInt(txtHeight.getText());
+						rectangle = new Rectangle(new Point(x, y), width, height);
+						setVisible(false);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -153,6 +168,38 @@ public class DlgRectangle extends JDialog {
 
 	public void setRectangle(Rectangle rectangle) {
 		this.rectangle = rectangle;
+	}
+
+	public JTextField getTxtX() {
+		return txtX;
+	}
+
+	public void setTxtX(JTextField txtX) {
+		this.txtX = txtX;
+	}
+
+	public JTextField getTxtY() {
+		return txtY;
+	}
+
+	public void setTxtY(JTextField txtY) {
+		this.txtY = txtY;
+	}
+
+	public JTextField getTxtWidth() {
+		return txtWidth;
+	}
+
+	public void setTxtWidth(JTextField txtWidth) {
+		this.txtWidth = txtWidth;
+	}
+
+	public JTextField getTxtHeight() {
+		return txtHeight;
+	}
+
+	public void setTxtHeight(JTextField txtHeight) {
+		this.txtHeight = txtHeight;
 	}
 
 }

@@ -8,13 +8,17 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import geometry.Circle;
 import geometry.Donut;
+import geometry.Point;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgDonut extends JDialog {
 
@@ -42,6 +46,7 @@ public class DlgDonut extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgDonut() {
+		setModal(true);
 		setTitle("Dialog donut");
 		setBounds(100, 100, 299, 248);
 		getContentPane().setLayout(new BorderLayout());
@@ -135,6 +140,29 @@ public class DlgDonut extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						int x = Integer.parseInt(txtX.getText());
+						int y = Integer.parseInt(txtY.getText());
+						int outerR = Integer.parseInt(txtOuterRadius.getText());
+						int innerR = Integer.parseInt(txtInnerRadius.getText());
+						if(donut == null)
+							donut = new Donut(new Point(x, y), outerR, innerR);
+						else {
+							donut.getCenter().setX(x);
+							donut.getCenter().setY(y);
+							donut.setInnerRadius(innerR);
+							try {
+								donut.setRadius(outerR);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+							
+						setVisible(false);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -153,6 +181,42 @@ public class DlgDonut extends JDialog {
 
 	public void setDonut(Donut donut) {
 		this.donut = donut;
+		txtX.setText(String.valueOf(this.donut.getCenter().getX()));
+		txtY.setText(String.valueOf(this.donut.getCenter().getY()));
+		txtOuterRadius.setText(String.valueOf(this.donut.getRadius()));
+		txtInnerRadius.setText(String.valueOf(this.donut.getInnerRadius()));
+	}
+
+	public JTextField getTxtX() {
+		return txtX;
+	}
+
+	public void setTxtX(JTextField txtX) {
+		this.txtX = txtX;
+	}
+
+	public JTextField getTxtY() {
+		return txtY;
+	}
+
+	public void setTxtY(JTextField txtY) {
+		this.txtY = txtY;
+	}
+
+	public JTextField getTxtOuterRadius() {
+		return txtOuterRadius;
+	}
+
+	public void setTxtOuterRadius(JTextField txtOuterRadius) {
+		this.txtOuterRadius = txtOuterRadius;
+	}
+
+	public JTextField getTxtInnerRadius() {
+		return txtInnerRadius;
+	}
+
+	public void setTxtInnerRadius(JTextField txtInnerRadius) {
+		this.txtInnerRadius = txtInnerRadius;
 	}
 
 }

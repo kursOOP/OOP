@@ -9,12 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import geometry.Circle;
+import geometry.Point;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgCircle extends JDialog {
 
@@ -41,6 +44,7 @@ public class DlgCircle extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgCircle() {
+		setModal(true);
 		setTitle("Dialog circle");
 		setBounds(100, 100, 299, 248);
 		getContentPane().setLayout(new BorderLayout());
@@ -115,6 +119,26 @@ public class DlgCircle extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						int x = Integer.parseInt(txtX.getText());
+						int y = Integer.parseInt(txtY.getText());
+						int r = Integer.parseInt(txtRadius.getText());
+						if(circle == null)
+							circle = new Circle(new Point(x, y), r);
+						else {
+							circle.getCenter().setX(x);
+							circle.getCenter().setY(y);
+							try {
+								circle.setRadius(r);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						setVisible(false);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -133,6 +157,33 @@ public class DlgCircle extends JDialog {
 
 	public void setCircle(Circle circle) {
 		this.circle = circle;
+		txtX.setText(String.valueOf(this.circle.getCenter().getX()));
+		txtY.setText(String.valueOf(this.circle.getCenter().getY()));
+		txtRadius.setText(String.valueOf(this.circle.getRadius()));
+	}
+
+	public JTextField getTxtX() {
+		return txtX;
+	}
+
+	public void setTxtX(JTextField txtX) {
+		this.txtX = txtX;
+	}
+
+	public JTextField getTxtY() {
+		return txtY;
+	}
+
+	public void setTxtY(JTextField txtY) {
+		this.txtY = txtY;
+	}
+
+	public JTextField getTxtRadius() {
+		return txtRadius;
+	}
+
+	public void setTxtRadius(JTextField txtRadius) {
+		this.txtRadius = txtRadius;
 	}
 
 }
